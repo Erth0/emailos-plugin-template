@@ -110,6 +110,28 @@ interface EmailosFetchResponse {
   body: string
 }
 
+/**
+ * Host-provided component vendor, available ONLY inside view documents
+ * (`emailos.view` set). React, ReactDOM, and the app's real UI components
+ * (Button, IconButton, Input, Select, Switch, Label, Separator,
+ * EmptyState, labeledSelectProps) — already styled and theme-aware, no
+ * bundling needed. `mount(node, element)` renders with the app's provider
+ * wired up and returns a root with `.unmount()`.
+ */
+interface EmailosVendor {
+  /* eslint-disable @typescript-eslint/no-explicit-any -- React's own types
+     are not installed in plain-JS plugin projects. */
+  React: any
+  ReactDOM: any
+  UI: Record<string, any>
+  Provider: any
+  mount(node: Element, element: unknown): { unmount(): void }
+}
+
+declare interface Window {
+  EmailOS: EmailosVendor
+}
+
 declare const emailos: {
   plugin: EmailosPluginInfo
   view: EmailosViewInfo | null

@@ -67,6 +67,24 @@ async function renderHome() {
     refresh().catch(error => emailos.ui.toast(error.message, 'error'))
   })
   await refresh()
+
+  // Real app components: views also get `window.EmailOS` — React plus the
+  // EmailOS UI kit, pre-styled and theme-aware. Mix freely with plain DOM,
+  // or build the whole page with React.
+  const { React, UI, mount } = window.EmailOS
+  const demo = document.createElement('div')
+  page.appendChild(demo)
+  mount(
+    demo,
+    React.createElement(
+      UI.Button,
+      {
+        color: 'brand',
+        onClick: () => emailos.ui.toast('From a real EmailOS button'),
+      },
+      'Native component'
+    )
+  )
 }
 
 if (emailos.view && emailos.view.id === 'home') {
