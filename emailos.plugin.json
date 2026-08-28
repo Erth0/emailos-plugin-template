@@ -1,0 +1,28 @@
+{
+  "id": "com.example.starter",
+  "name": "Starter",
+  "version": "0.1.0",
+  "description": "EmailOS plugin starter: a command, a page, and a slot card",
+  "apiVersion": 1,
+  "permissions": [
+    "commands.register",
+    "storage",
+    "mail.read.metadata",
+    "ui.threadSidebar",
+    "ui.views"
+  ],
+  "commands": [
+    {
+      "id": "hello",
+      "label": "Starter: say hello",
+      "description": "Greets you with the selected conversation's subject",
+      "scopes": ["global", "message"],
+      "keywords": ["starter", "hello"],
+      "inputPlaceholder": "Say something back (optional)"
+    }
+  ],
+  "slots": [{ "id": "threadSidebar" }],
+  "views": [{ "id": "home", "title": "Starter Home" }],
+  "events": ["selection.changed"],
+  "entry": "entry.js"
+}
