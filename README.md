@@ -32,10 +32,13 @@ a single `entry.js` ≤ 256 KB and point the manifest `entry` at the output.
   (full pages), and event subscriptions.
 - `entry.js` — one file, two contexts: the hidden background sandbox
   (register commands/listeners) and each view document (`emailos.view` is
-  set — render your page). Views get the app's design tokens
-  (`var(--background)`, `var(--foreground)`, …) and the `eos-*` CSS kit
-  injected, so pages look native by default; ignore them if you want a
-  custom look.
+  set — render your page). Views get three layers injected, all optional:
+  the app's design tokens (`var(--background)`, …), the `eos-*` CSS kit
+  (pre-styled classes), and **`window.EmailOS`** — React plus the app's
+  real UI components (Button, Input, Select, Switch, …), pre-styled and
+  theme-aware. `window.EmailOS.mount(node, element)` renders a React tree
+  with the app's provider wired up, so a view can be plain DOM, kit
+  classes, full React, or any mix — the starter view demos it.
 - `emailos.d.ts` — the full API, each call documented with the permission
   it requires.
 
